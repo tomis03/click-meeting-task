@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <NavBar></NavBar>
+    <PageContent></PageContent>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    NavBar: () => import("@/components/NavBar.vue"),
+    PageContent: () => import("@/components/PageContent.vue"),
+  },
+  created() {
+    this.$store.dispatch("getMessages");
+  },
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #363a3d;
+
+  p,
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    padding: 0 15px;
+    margin: 0 auto;
+  }
 }
 </style>

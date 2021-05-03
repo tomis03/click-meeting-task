@@ -1,4 +1,4 @@
-# cltask
+# click_meeting_task
 
 ## Project setup
 ```
