@@ -88,7 +88,7 @@ export default {
     transition: background-color 0.2s;
 
     svg {
-      fill: #b5b5b5;
+      fill: #e6e6e6;
     }
 
     &:not(.disabled) {

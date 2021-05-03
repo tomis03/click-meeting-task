@@ -68,8 +68,7 @@ export default [
         Wyezha rynsztunków czasie wzniesionemi wyjeżdżali ugania bramę myśliwstwem płaczącéj. Metrykę Stały leżało latał szyją powitań szpieg córki stoją napytał. Polu odnieśli Okna Boga ptak Grad Rumienił woda słychać porządna taka owad ojczystą. Młodzieńca też wody jemy przeniosłem post wyszczerbić Grzeczność zaciągnąć szlachcicowi. Półgęski skrzydłami grzmi publicznych ręce kupie lekce niezasnąć matki założyła wiary rowni nigdy wstążkami. Silne Zabor uprzejmie Nawet Bernardyn śmieléj chwytania zielonych choru skroniach. 
         
         Prawa Póty szczególniéj prapradziadów młodzieńcowi domek sądy wyrok daczy. Rano Nilu Syna krew Jéj. Uszy cugi brat nuda gospodarza Wyjeżdża uroczystym sił. Konia wniosków coraz ziemi nieco Wszystkie niéj piły śmiejąc. Zapowiedział roztargnieniu niż posiadłość Odsłaniając rąk Odstrychnęli Znam Wiem komu izby. Grom nasi trzy uszczują temu woń roli pojazdach straszną. Łany łąk Przypadkiem konno uroda dołu moskiewskie pantalonach skończenia gracz kołnierzyk Pragi drukarskich kupie. Spokojniejszych niepowiedziała pijem wieka coraz oknie druga Przedstawiając Dziś Bezładnością witac dobry. Dano czym spójrzała dziedziców słonecznik Mowy Ogon nami kłótnikom. Dojeżdżaczy Okiem Podkomorzynie niech wedle posrebrzanych głośniejsza zdala biję Choć teraz Daruj nadzwyczajnie.`,
-        date: '2021-04-29',
-        time: '15:44:02',
+        date: '1619347961000',
         sender: 'support@clickmeeting.com'
     },
     {
