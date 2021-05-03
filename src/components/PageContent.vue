@@ -29,7 +29,10 @@
       <div class="container">
         <h2>Moja skrzynka odbiorcza</h2>
         <div class="table-wrapper">
-          <MessagesPagination></MessagesPagination>
+          <div class="table-actions">
+            <MessagesSearch></MessagesSearch>
+            <MessagesPagination></MessagesPagination>
+          </div>
           <Messages></Messages>
         </div>
       </div>
@@ -40,6 +43,7 @@
 <script>
 export default {
   components: {
+    MessagesSearch: () => import("./MessagesSearch.vue"),
     MessagesPagination: () => import("./MessagesPagination.vue"),
     Messages: () => import("./Messages.vue"),
   },
@@ -75,6 +79,15 @@ export default {
         font-size: 35px;
         font-weight: 400;
         margin-bottom: 27px;
+      }
+
+      .table-wrapper {
+        .table-actions {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 30px;
+        }
       }
     }
   }

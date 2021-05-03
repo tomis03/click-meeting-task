@@ -2,6 +2,7 @@
   <div class="app">
     <NavBar></NavBar>
     <PageContent></PageContent>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -10,6 +11,7 @@ export default {
   components: {
     NavBar: () => import("@/components/NavBar.vue"),
     PageContent: () => import("@/components/PageContent.vue"),
+    Footer: () => import("@/components/Footer.vue"),
   },
   created() {
     this.$store.dispatch("getMessages");
@@ -39,6 +41,16 @@ body {
     max-width: 1140px;
     padding: 0 15px;
     margin: 0 auto;
+  }
+
+  .app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    main {
+      flex: 1 1 auto;
+    }
   }
 }
 </style>

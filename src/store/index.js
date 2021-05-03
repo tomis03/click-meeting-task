@@ -9,7 +9,7 @@ export default new Vuex.Store({
     messages: [],
     currentPage: null,
     pages: null,
-    messagesPerPage: 30
+    messagesPerPage: 20
   },
   mutations: {
     messages: (state, data) => state.messages = data,
@@ -24,8 +24,12 @@ export default new Vuex.Store({
           messages.push(messages[j]);
         }
       }
+
+      // Use it for sorting by date
+      // messages.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
+
       commit('messages', messages);
-      commit('currentPage', 1);
+      commit('currentPage', 51);
       commit('pages', Math.ceil(messages.length / 20));
     }
   },

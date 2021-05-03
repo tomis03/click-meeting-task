@@ -66,7 +66,6 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 15px;
 
   .current-page {
     font-size: 18px;

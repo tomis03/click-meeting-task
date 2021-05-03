@@ -2,8 +2,8 @@
   <table class="messages-table">
     <colgroup>
       <col width="20%" />
-      <col width="60%" />
-      <col width="20%" />
+      <col width="65%" />
+      <col width="15%" />
     </colgroup>
     <thead>
       <tr>
@@ -33,7 +33,14 @@
         <td class="date">
           <div>
             <p>
-              {{ date(message.date).getDate() }}
+              {{ leadingZero(date(message.date).getDate()) }}-{{
+                leadingZero(date(message.date).getMonth() + 1)
+              }}-{{ leadingZero(date(message.date).getFullYear()) }}
+            </p>
+            <p>
+              {{ leadingZero(date(message.date).getHours()) }}:{{
+                leadingZero(date(message.date).getMinutes())
+              }}:{{ leadingZero(date(message.date).getSeconds()) }}
             </p>
           </div>
         </td>
@@ -55,12 +62,21 @@ export default {
         i <= firstMessageIndex + (this.$store.state.messagesPerPage - 1);
         i++
       ) {
-        messages.push({ ...this.$store.state.messages[i], index: i });
+        if (this.$store.state.messages[i]) {
+          messages.push({ ...this.$store.state.messages[i], index: i });
+        }
       }
       return messages;
     },
   },
   methods: {
+    leadingZero(number) {
+      if (number < 10) {
+        return `0${number}`;
+      } else {
+        return number;
+      }
+    },
     date(timestamp) {
       return new Date(parseInt(timestamp));
     },
@@ -95,7 +111,7 @@ export default {
       transition: box-shadow 0.2s;
 
       &:hover {
-        box-shadow: 1px 1px 5px #20242e;
+        box-shadow: 0 0 5px #20242e;
       }
 
       td {
@@ -104,22 +120,15 @@ export default {
 
         div {
           width: 100%;
+
           p {
-            font-size: 15px;
+            font-size: 14px;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+            user-select: none;
           }
         }
-
-        // &.sender,
-        // &.date {
-        //   width: 20%;
-        // }
-
-        // &.title {
-        //   width: 60%;
-        // }
 
         &.sender,
         &.date,
