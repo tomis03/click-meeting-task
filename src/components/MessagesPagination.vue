@@ -4,9 +4,12 @@
       type="button"
       :class="[
         'pagination-btn prev',
-        $store.state.currentPage == 1 ? 'disabled' : '',
+        $store.state.currentPage == 1 || $store.state.currentPage == 0
+          ? 'disabled'
+          : '',
       ]"
       @click="prevPage"
+      aria-label="Poprzednia strona"
     >
       <svg
         width="20"
@@ -26,9 +29,13 @@
       type="button"
       :class="[
         'pagination-btn next',
-        $store.state.currentPage == $store.state.pages ? 'disabled' : '',
+        $store.state.currentPage == $store.state.pages ||
+        $store.state.currentPage == 0
+          ? 'disabled'
+          : '',
       ]"
       @click="nextPage"
+      aria-label="Następna strona"
     >
       <svg
         width="20"

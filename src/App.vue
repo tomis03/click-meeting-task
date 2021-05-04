@@ -1,5 +1,10 @@
 <template>
   <div class="app">
+    <transition name="modal-fade">
+      <MessagesModal
+        v-if="$store.state.showModal && $store.state.openedMessageIndex != null"
+      ></MessagesModal>
+    </transition>
     <NavBar></NavBar>
     <PageContent></PageContent>
     <Footer></Footer>
@@ -9,6 +14,7 @@
 <script>
 export default {
   components: {
+    MessagesModal: () => import("@/components/MessagesModal.vue"),
     NavBar: () => import("@/components/NavBar.vue"),
     PageContent: () => import("@/components/PageContent.vue"),
     Footer: () => import("@/components/Footer.vue"),
@@ -22,6 +28,15 @@ export default {
 <style lang="scss">
 * {
   box-sizing: border-box;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.2s;
+}
+.modal-fade-enter,
+.modal-fade-leave-to {
+  opacity: 0;
 }
 
 body {

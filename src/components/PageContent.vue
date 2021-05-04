@@ -72,7 +72,7 @@ export default {
   }
 
   .page-section {
-    padding: 27px 0;
+    padding: 27px 0 100px;
 
     .container {
       h2 {

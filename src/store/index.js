@@ -11,14 +11,25 @@ export default new Vuex.Store({
     messagesToShow: [],
     currentPage: null,
     pages: null,
-    messagesPerPage: 20
+    messagesPerPage: 20,
+    showModal: false,
+    openedMessageIndex: null
   },
 
   mutations: {
     allMessages: (state, data) => state.allMessages = data,
     messagesToShow: (state, data) => state.messagesToShow = data,
     currentPage: (state, data) => state.currentPage = data,
-    pages: (state, data) => state.pages = data
+    pages: (state, data) => state.pages = data,
+    showModal: (state, data) => {
+      state.showModal = data.show;
+      state.openedMessageIndex = data.index;
+      if (data.show) {
+        document.querySelector('body').style.overflow = 'hidden';
+      } else {
+        document.querySelector('body').style.overflow = '';
+      }
+    }
   },
 
   actions: {
@@ -36,8 +47,8 @@ export default new Vuex.Store({
 
       commit('allMessages', messages);
       commit('messagesToShow', messages);
-      commit('currentPage', 1);
-      commit('pages', Math.ceil(messages.length / 20));
+      commit('currentPage', messages.length == 0 ? 0 : 1);
+      commit('pages', messages.length == 0 ? 0 : Math.ceil(messages.length / 20));
     },
 
     searchMessages({ state, commit }, searchedText) {
@@ -49,8 +60,8 @@ export default new Vuex.Store({
       });
 
       commit('messagesToShow', searchedMessages);
-      commit('currentPage', 1);
-      commit('pages', Math.ceil(searchedMessages.length / 20));
+      commit('currentPage', searchedMessages.length == 0 ? 0 : 1);
+      commit('pages', searchedMessages.length == 0 ? 0 : Math.ceil(searchedMessages.length / 20));
     }
 
   },

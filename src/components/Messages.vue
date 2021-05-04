@@ -19,26 +19,43 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(message, index) in messagesToShow" :key="`message${index}`">
-        <td class="sender">
-          <p>{{ message.sender }}</p>
-        </td>
-        <td class="title">
-          <p>{{ message.title }}</p>
-        </td>
-        <td class="date">
-          <p>
-            {{ leadingZero(date(message.date).getDate()) }}-{{
-              leadingZero(date(message.date).getMonth() + 1)
-            }}-{{ leadingZero(date(message.date).getFullYear()) }}
-          </p>
-          <p>
-            {{ leadingZero(date(message.date).getHours()) }}:{{
-              leadingZero(date(message.date).getMinutes())
-            }}:{{ leadingZero(date(message.date).getSeconds()) }}
-          </p>
-        </td>
-      </tr>
+      <template v-if="messagesToShow.length > 0">
+        <tr
+          v-for="(message, index) in messagesToShow"
+          :key="`message${index}`"
+          @click="
+            $store.commit('showModal', { show: true, index: message.index })
+          "
+        >
+          <td class="sender">
+            <p class="table-element-title">Nadawca:</p>
+            <p>{{ message.sender }}</p>
+          </td>
+          <td class="title">
+            <p class="table-element-title">Tytuł:</p>
+            <p>{{ message.title }}</p>
+          </td>
+          <td class="date">
+            <p>
+              {{ leadingZero(date(message.date).getDate()) }}-{{
+                leadingZero(date(message.date).getMonth() + 1)
+              }}-{{ leadingZero(date(message.date).getFullYear()) }}
+            </p>
+            <p>
+              {{ leadingZero(date(message.date).getHours()) }}:{{
+                leadingZero(date(message.date).getMinutes())
+              }}:{{ leadingZero(date(message.date).getSeconds()) }}
+            </p>
+          </td>
+        </tr>
+      </template>
+      <template v-else>
+        <tr class="no-messages">
+          <td colspan="3">
+            <p>Brak wiadomości</p>
+          </td>
+        </tr>
+      </template>
     </tbody>
   </table>
 </template>
@@ -101,7 +118,15 @@ export default {
   tbody {
     tr {
       border: 1px solid #e6e6e6;
-      cursor: pointer;
+
+      &.no-messages {
+        p {
+          text-align: center;
+          font-size: 20px;
+          font-weight: 700;
+          padding: 15px 0;
+        }
+      }
 
       td {
         padding: 15px 8px;
@@ -109,6 +134,41 @@ export default {
 
         p {
           font-size: 14px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 800px) {
+    tbody {
+      tr {
+        transition: box-shadow 0.2s;
+
+        &:not(.no-messages) {
+          cursor: pointer;
+
+          &:hover {
+            box-shadow: 0 0 5px #20242e;
+          }
+        }
+
+        td {
+          .table-element-title {
+            display: none;
+          }
+
+          p {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            user-select: none;
+          }
+
+          &.sender,
+          &.date,
+          &.title {
+            max-width: 1px;
+          }
         }
       }
     }
@@ -135,8 +195,17 @@ export default {
 
     tbody {
       tr {
+        border-top: 4px solid #20242e;
+        margin-bottom: 8px;
+        cursor: pointer;
+
         td {
           padding: 10px 8px;
+
+          .table-element-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+          }
 
           &.sender,
           &.date,
@@ -149,33 +218,6 @@ export default {
               text-align: right;
               font-size: 13px;
             }
-          }
-        }
-      }
-    }
-  }
-
-  @media (min-width: 800px) {
-    tbody {
-      tr {
-        transition: box-shadow 0.2s;
-
-        &:hover {
-          box-shadow: 0 0 5px #20242e;
-        }
-
-        td {
-          p {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            user-select: none;
-          }
-
-          &.sender,
-          &.date,
-          &.title {
-            max-width: 1px;
           }
         }
       }
