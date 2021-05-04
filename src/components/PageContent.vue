@@ -91,5 +91,17 @@ export default {
       }
     }
   }
+
+  @media (max-width: 799px) {
+    .page-section {
+      .container {
+        .table-wrapper {
+          .table-actions {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

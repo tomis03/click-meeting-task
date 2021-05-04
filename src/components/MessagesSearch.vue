@@ -4,12 +4,27 @@
       type="text"
       class="search-input"
       placeholder="Przeszukaj wiadomości"
+      v-model="searchedText"
+      @input="searchMessages"
     />
   </div>
 </template>
 
 <script>
-export default {};
+import { debounce as _debounce } from "lodash";
+
+export default {
+  data() {
+    return {
+      searchedText: "",
+    };
+  },
+  methods: {
+    searchMessages: _debounce(function (e) {
+      this.$store.dispatch("searchMessages", this.searchedText);
+    }, 500),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -31,6 +46,11 @@ export default {};
     &:focus {
       border-color: #6ebe3b;
     }
+  }
+
+  @media (max-width: 799px) {
+    align-self: flex-start;
+    margin-bottom: 30px;
   }
 }
 </style>

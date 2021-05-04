@@ -102,5 +102,9 @@ export default {
       }
     }
   }
+
+  @media (max-width: 799px) {
+    align-self: flex-end;
+  }
 }
 </style>

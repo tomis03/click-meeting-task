@@ -21,28 +21,22 @@
     <tbody>
       <tr v-for="(message, index) in messagesToShow" :key="`message${index}`">
         <td class="sender">
-          <div>
-            <p>{{ message.sender }}</p>
-          </div>
+          <p>{{ message.sender }}</p>
         </td>
         <td class="title">
-          <div>
-            <p>{{ message.title }}</p>
-          </div>
+          <p>{{ message.title }}</p>
         </td>
         <td class="date">
-          <div>
-            <p>
-              {{ leadingZero(date(message.date).getDate()) }}-{{
-                leadingZero(date(message.date).getMonth() + 1)
-              }}-{{ leadingZero(date(message.date).getFullYear()) }}
-            </p>
-            <p>
-              {{ leadingZero(date(message.date).getHours()) }}:{{
-                leadingZero(date(message.date).getMinutes())
-              }}:{{ leadingZero(date(message.date).getSeconds()) }}
-            </p>
-          </div>
+          <p>
+            {{ leadingZero(date(message.date).getDate()) }}-{{
+              leadingZero(date(message.date).getMonth() + 1)
+            }}-{{ leadingZero(date(message.date).getFullYear()) }}
+          </p>
+          <p>
+            {{ leadingZero(date(message.date).getHours()) }}:{{
+              leadingZero(date(message.date).getMinutes())
+            }}:{{ leadingZero(date(message.date).getSeconds()) }}
+          </p>
         </td>
       </tr>
     </tbody>
@@ -62,8 +56,8 @@ export default {
         i <= firstMessageIndex + (this.$store.state.messagesPerPage - 1);
         i++
       ) {
-        if (this.$store.state.messages[i]) {
-          messages.push({ ...this.$store.state.messages[i], index: i });
+        if (this.$store.state.messagesToShow[i]) {
+          messages.push({ ...this.$store.state.messagesToShow[i], index: i });
         }
       }
       return messages;
@@ -108,32 +102,81 @@ export default {
     tr {
       border: 1px solid #e6e6e6;
       cursor: pointer;
-      transition: box-shadow 0.2s;
-
-      &:hover {
-        box-shadow: 0 0 5px #20242e;
-      }
 
       td {
         padding: 15px 8px;
         border: none;
 
-        div {
-          width: 100%;
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 
+  @media (max-width: 799px) {
+    thead {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1000;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 10px 8px;
+
+          &.sender,
+          &.date,
+          &.title {
+            max-width: 100%;
+          }
+
+          &.date {
+            p {
+              text-align: right;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 800px) {
+    tbody {
+      tr {
+        transition: box-shadow 0.2s;
+
+        &:hover {
+          box-shadow: 0 0 5px #20242e;
+        }
+
+        td {
           p {
-            font-size: 14px;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
             user-select: none;
           }
-        }
 
-        &.sender,
-        &.date,
-        &.title {
-          max-width: 1px;
+          &.sender,
+          &.date,
+          &.title {
+            max-width: 1px;
+          }
         }
       }
     }
