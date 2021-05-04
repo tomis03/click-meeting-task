@@ -1,19 +1,13 @@
-# click_meeting_task
+# ClickMeeting Messages
+A simple page for displaying news on both desktop and mobile. The app also includes a messages search.
 
-## Project setup
-```
-npm install
-```
+## How to start
+<ol>
+<li>Download repository</li>
+<li>Open terminal and navigate to downloaded repository</li>
+<li>Run command <code>npm install</code></li>
+<li>After installation run command <code>npm run serve</code> to run application in development mode or <code>npm run build</code> to build an application to production</li>
+</ol>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Demo
+You can see demo here: <a href="https://click-meeting-app.netlify.app/">https://click-meeting-app.netlify.app/</a>
